@@ -1,0 +1,45 @@
+.paddingTableCell {
+    padding: 20px;
+}
+
+.marginTableCell {
+    margin : 5px;
+}
+
+.card {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.cardContainer {
+    margin : 10px;
+}
+
+.numberFont {
+    font-size: 150px;
+    color: blue  ;
+    font-family: monospace;
+}
+
+.descriptionFont {
+    font-size: 20px;
+}
+
+td {
+    padding : 0 !important;
+    font-weight: bolder;
+}
+
+.roundButton {
+    border-radius: 50%;
+}
+
+.odometer {
+    font-size: 100px;
+}
+
+.previousNumber {
+    color: red;
+}

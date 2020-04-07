@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+router.use(express.static(__basedir + "/public/javascripts"));
+router.use(express.static(__basedir + "/public/stylesheets"));
+
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function (req, res, next) {
+  res.sendFile(__basedir + '/public/html/index.html');
 });
 
 module.exports = router;
