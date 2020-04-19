@@ -18,13 +18,13 @@
 }
 
 .numberFont {
-    font-size: 150px;
+    font-size: 200px;
     color: blue  ;
     font-family: monospace;
 }
 
 .descriptionFont {
-    font-size: 20px;
+    font-size: 50px;
 }
 
 td {
@@ -37,9 +37,13 @@ td {
 }
 
 .odometer {
-    font-size: 100px;
+    font-size: 150px;
 }
 
 .previousNumber {
     color: red;
+}
+
+.numbersList{
+    font-size: 30px;
 }

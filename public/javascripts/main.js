@@ -22,7 +22,7 @@ function generateRandomNumber() {
     }
 }
 
-const numberTemplate = "<td class=\"text-center\"><span id={{number}} style=\"visibility: hidden\">{{number}}</span></td>";
+const numberTemplate = "<td class=\"text-center\"><span class=\"numbersList\" id={{number}} style=\"visibility: hidden\">{{number}}</span></td>";
 
 function generateTable() {
     let num = 1;

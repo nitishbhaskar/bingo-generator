@@ -9,4 +9,8 @@ router.get('/', function (req, res, next) {
   res.sendFile(__basedir + '/public/html/index.html');
 });
 
+router.get('/getTicket', function (req, res) {
+
+});
+
 module.exports = router;
