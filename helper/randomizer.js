@@ -1,12 +1,32 @@
 function generateRandomNumberList() {
-    var arr = [];
+    let arr = getInitialNumberList();
     while (arr.length < 15) {
-        var r = Math.floor(Math.random() * 100) + 1;
+        var r = Math.floor(Math.random() * 90) + 1;
         if (arr.indexOf(r) === -1) arr.push(r);
     }
     //If randomly generated numbers are invalid, then generate it again
-    if (!validateNumbers(arr)) generateRandomNumberList();
-    return arr.sort();
+    if (!validateNumbers(arr)) {
+        generateRandomNumberList();
+    }
+    return arr.sort((a, b) => {
+        if (a > b) return 1;
+        if (a < b) return -1;
+        return 0;
+    });
+}
+
+//Each column in ticket needs to have at least one number. So, generating one number for each column
+function getInitialNumberList() {
+    let arr = [];
+    let range = 0;
+    let unitPlace = 9;
+    while (range < 90) {
+        if (range == 80) unitPlace = 10; //This will help consider number 90
+        var r = Math.floor(Math.random() * unitPlace) + 1 + range;
+        arr.push(r);
+        range += 10;
+    }
+    return arr;
 }
 
 function validateNumbers(numberList) {
@@ -14,8 +34,8 @@ function validateNumbers(numberList) {
     let endRange = 9;
     while (startRange != 90) {
         const count = countInRange(numberList, startRange, endRange);
-        //Can fit only 3 numbers in a column
-        if (count > 3) {
+        //Can fit only 3 numbers in a column. Also, should have at least one number in each column
+        if (count == 0 || count > 3) {
             return false;
         }
         startRange += 10;

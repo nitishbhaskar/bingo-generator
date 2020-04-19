@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const randomizer = require('../helper/randomizer');
 
 router.use(express.static(__basedir + "/public/javascripts"));
 router.use(express.static(__basedir + "/public/stylesheets"));
@@ -10,7 +11,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/getTicket', function (req, res) {
-
+  res.send(randomizer.generateRandomNumberList());
 });
 
 module.exports = router;

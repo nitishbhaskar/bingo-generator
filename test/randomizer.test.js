@@ -7,7 +7,11 @@ describe('Generate random numbers', () => {
 
     test('generated numbers are sorted', () => {
         const randomNumbers = randomizer.generateRandomNumberList();
-        expect(randomNumbers).toEqual(randomNumbers.sort());
+        expect(randomNumbers).toEqual(randomNumbers.sort((a, b) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+            return 0;
+        }));
     });
 });
 
@@ -29,9 +33,9 @@ describe('Count numbers in a range of an array', () => {
 });
 
 describe('Validate the generated numbers', () => {
-    test('[1,7,22,27,35,39,42,47,55,59,61,69,81,88,90] should be valid', () => {
+    test('[1,7,22,27,35,39,42,47,55,59,61,69,81,88,90] should be invalid', () => {
         const numberList = [1, 7, 22, 27, 35, 39, 42, 47, 55, 59, 61, 69, 81, 88, 90];
-        expect(randomizer.validateNumbers(numberList)).toBeTruthy();
+        expect(randomizer.validateNumbers(numberList)).toBeFalsy();
     });
 
     test('[1,7,22,35,39,42,47,55,59,61,69,81,85,88,90] should be invalid', () => {
@@ -39,8 +43,14 @@ describe('Validate the generated numbers', () => {
         expect(randomizer.validateNumbers(numberList)).toBeFalsy();
     });
 
+    test('[1,12,17,27,35,39,42,47,55,59,61,69,81,88,90] should be valid', () => {
+        const numberList = [1, 7, 22, 27, 35, 39, 42, 47, 55, 59, 61, 69, 81, 88, 90];
+        expect(randomizer.validateNumbers(numberList)).toBeFalsy();
+    });
+
     test('Randomly generated numbers should be valid', () => {
         const numberList = randomizer.generateRandomNumberList();
+        console.log(numberList);
         expect(randomizer.validateNumbers(numberList)).toBeTruthy();
     });
 });
