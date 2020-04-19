@@ -38,4 +38,9 @@ describe('Validate the generated numbers', () => {
         const numberList = [1, 7, 22, 35, 39, 42, 47, 55, 59, 61, 69, 81, 85, 88, 90];
         expect(randomizer.validateNumbers(numberList)).toBeFalsy();
     });
+
+    test('Randomly generated numbers should be valid', () => {
+        const numberList = randomizer.generateRandomNumberList();
+        expect(randomizer.validateNumbers(numberList)).toBeTruthy();
+    });
 });
