@@ -13,6 +13,11 @@ describe('Generate random numbers', () => {
             return 0;
         }));
     });
+
+    test('generated initial numbers are valid', () => {
+        const initialNumberList = randomizer.getInitialNumberList();
+        expect(randomizer.validateNumbers(initialNumberList)).toBeTruthy();
+    });
 });
 
 describe('Count numbers in a range of an array', () => {
@@ -38,6 +43,11 @@ describe('Validate the generated numbers', () => {
         expect(randomizer.validateNumbers(numberList)).toBeFalsy();
     });
 
+    test('[3, 18, 26, 33, 42, 54, 68, 77, 86] should be valid', () => {
+        const numberList = [3, 18, 26, 33, 42, 54, 68, 77, 86];
+        expect(randomizer.validateNumbers(numberList)).toBeTruthy();
+    });
+
     test('[1,7,22,35,39,42,47,55,59,61,69,81,85,88,90] should be invalid', () => {
         const numberList = [1, 7, 22, 35, 39, 42, 47, 55, 59, 61, 69, 81, 85, 88, 90];
         expect(randomizer.validateNumbers(numberList)).toBeFalsy();
@@ -50,7 +60,6 @@ describe('Validate the generated numbers', () => {
 
     test('Randomly generated numbers should be valid', () => {
         const numberList = randomizer.generateRandomNumberList();
-        console.log(numberList);
         expect(randomizer.validateNumbers(numberList)).toBeTruthy();
     });
 });
