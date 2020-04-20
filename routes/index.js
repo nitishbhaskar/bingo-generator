@@ -10,8 +10,13 @@ router.get('/', function (req, res, next) {
   res.sendFile(__basedir + '/public/html/index.html');
 });
 
+router.get('/ticket', function (req, res) {
+  res.sendFile(__basedir + '/public/html/ticket.html');
+});
+
 router.get('/getTicket', function (req, res) {
-  res.send(randomizer.generateRandomNumberList());
+  const ticketFormat = randomizer.getTicket();
+  res.send(ticketFormat);
 });
 
 module.exports = router;

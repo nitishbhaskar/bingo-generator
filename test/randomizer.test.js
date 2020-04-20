@@ -53,13 +53,19 @@ describe('Validate the generated numbers', () => {
         expect(randomizer.validateNumbers(numberList)).toBeFalsy();
     });
 
+    test('[3, 18, 21, 38, 48, 51, 61, 71, 81, 54, 89, 7, 17, 4, 8] should be invalid', () => {
+        const numberList = [3, 18, 21, 38, 48, 51, 61, 71, 81, 54, 89, 7, 17, 4, 8];
+        expect(randomizer.validateNumbers(numberList)).toBeFalsy();
+    });
+
     test('[1,12,17,27,35,39,42,47,55,59,61,69,81,88,90] should be valid', () => {
         const numberList = [1, 7, 22, 27, 35, 39, 42, 47, 55, 59, 61, 69, 81, 88, 90];
         expect(randomizer.validateNumbers(numberList)).toBeFalsy();
     });
 
     test('Randomly generated numbers should be valid', () => {
-        const numberList = randomizer.generateRandomNumberList();
-        expect(randomizer.validateNumbers(numberList)).toBeTruthy();
+        const ticket = randomizer.getTicket();
+        expect(randomizer.validateNumbers(ticket.list)).toBeTruthy();
     });
 });
+

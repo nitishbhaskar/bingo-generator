@@ -4,15 +4,35 @@ function generateRandomNumberList() {
         var r = Math.floor(Math.random() * 90) + 1;
         if (arr.indexOf(r) === -1) arr.push(r);
     }
-    //If randomly generated numbers are invalid, then generate it again
-    if (!validateNumbers(arr)) {
-        generateRandomNumberList();
-    }
-    return arr.sort((a, b) => {
+    const sortedArray = arr.sort((a, b) => {
         if (a > b) return 1;
         if (a < b) return -1;
         return 0;
     });
+    return sortedArray;
+}
+
+//Gets numbers in ticket format with 3 rows and 9 columns
+function getTicket() {
+    const ticketFormat = { "list": [], "row0": [0, 0, 0, 0, 0, 0, 0, 0, 0], "row1": [0, 0, 0, 0, 0, 0, 0, 0, 0], "row2": [0, 0, 0, 0, 0, 0, 0, 0, 0] };
+    let sortedArray = generateRandomNumberList();
+    //If randomly generated numbers are invalid, then generate it again
+    while (!validateNumbers(sortedArray)) {
+        sortedArray = generateRandomNumberList();
+    }
+    //console.log("Valid numbers " + sortedArray);
+    sortedArray.forEach((element, i) => {
+        const jsonObject = 'row' + (i % 3);
+        let arrayPosition = Math.floor(element / 10);
+        //Number 90 comes in the same column as 80s in ticket
+        if (element == 90) {
+            arrayPosition = arrayPosition - 1;
+        }
+        //ticketFormat['row' + (i % 3)][Math.floor(element / 10)] = element;
+        ticketFormat[jsonObject][arrayPosition] = element;
+    });
+    ticketFormat.list = sortedArray;
+    return ticketFormat;
 }
 
 //Each column in ticket needs to have at least one number. So, generating one number for each column
@@ -61,5 +81,6 @@ module.exports = {
     generateRandomNumberList: generateRandomNumberList,
     countInRange: countInRange,
     validateNumbers: validateNumbers,
-    getInitialNumberList: getInitialNumberList
+    getInitialNumberList: getInitialNumberList,
+    getTicket: getTicket
 }
