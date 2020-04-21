@@ -49,5 +49,9 @@ td {
 }
 
 .ticketBorder{
-    border: 4px solid #000000;
+    border: 5px solid red;
+}
+
+.table-bordered td {
+    border: 2px solid black; 
 }
