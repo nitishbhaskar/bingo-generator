@@ -10,24 +10,27 @@
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Bingo!</a>
     </nav>
-    <div class="row cardContainer">
-        <div class="input-group mb-3">
-            <input type="text" id="numberOfTickets" class="form-control" placeholder="Number of tickets"
-                aria-label="Number of tickets" aria-describedby="button-addon2" type="number"
-                onkeypress="return isNumberKey(event)">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="getTicketBtn">Get Tickets!</button>
+    <div class="container">
+        <div class="row cardContainer">
+            <div class="input-group mb-3">
+                <input type="text" id="numberOfTickets" class="form-control" placeholder="Number of tickets"
+                    aria-label="Number of tickets" aria-describedby="button-addon2" type="number"
+                    onkeypress="return isNumberKey(event)">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="getTicketBtn">Get Tickets!</button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="ticketAlert" style="display: none">
-        <strong>Tickets generated!</strong> You can right click on tickets and copy them.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="row cardContainer marginBottom">
-        <div class="col-3" id="ticket"></div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="ticketAlert"
+            style="display: none">
+            <strong>Tickets generated!</strong> You can right click on tickets and copy them.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="row cardContainer marginBottom">
+            <div class="col-4" id="ticket"></div>
+        </div>
     </div>
     <div class="footer">
         <p>Created by <a href="https://www.linkedin.com/in/nitishbhaskar/">Nitish Bhaskar</a></p>
