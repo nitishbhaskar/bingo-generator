@@ -53,5 +53,26 @@ td {
 }
 
 .table-bordered td {
-    border: 2px solid black; 
+    border: 1px solid black; 
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ticketId{
+    text-align: center;
+    color:red;
+    font-size: small;
+}
+
+.marginBottom{
+    margin-bottom: 20px;
 }

@@ -13,17 +13,25 @@
     <div class="row cardContainer">
         <div class="input-group mb-3">
             <input type="text" id="numberOfTickets" class="form-control" placeholder="Number of tickets"
-                aria-label="Number of tickets" aria-describedby="button-addon2" type="number">
+                aria-label="Number of tickets" aria-describedby="button-addon2" type="number"
+                onkeypress="return isNumberKey(event)">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" id="getTicketBtn">Get Tickets!</button>
             </div>
         </div>
     </div>
-    <!-- <button class="btn btn-outline-secondary" type="button" id="previewBtn">Preview!</button> -->
-    <div class="row cardContainer">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="ticketAlert" style="display: none">
+        <strong>Tickets generated!</strong> You can right click on tickets and copy them.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="row cardContainer marginBottom">
         <div class="col-2" id="ticket"></div>
     </div>
-    <div id="previewImage"></div>
+    <div class="footer">
+        <p>Created by <a href="https://www.linkedin.com/in/nitishbhaskar/">Nitish Bhaskar</a></p>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
