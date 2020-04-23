@@ -1,5 +1,7 @@
 const ticketTemplate = "<div class=\"ticketId\">{{uniqueTicketNumber}}</div><table class=\"table table-bordered ticketBorder table-sm\"><tr id={{row0}}></tr><tr id={{row1}}></tr><tr id={{row2}}></tr></table>";
 
+let canvasImage = "";
+
 $("#getTicketBtn").click(function () {
     const numberOfTickets = document.getElementById('numberOfTickets').value;
     $("#ticket").empty();
@@ -35,10 +37,34 @@ function displayTickets(tickets) {
 //Turns the generated ticket table into an image for easy copying
 function getImage() {
     html2canvas(document.querySelector("#ticket")).then(canvas => {
+        canvasImage = canvas;
         $("#ticket").empty();
         $("#ticketAlert").show();
         $("#ticket").append(canvas);
     });
+}
+
+$("#downloadBtn").click(function () {
+    saveAs(canvasImage.toDataURL(), 'canvas.png');
+});
+
+function saveAs(uri, filename) {
+    var link = document.createElement('a');
+    if (typeof link.download === 'string') {
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+    } else {
+        window.open(uri);
+    }
 }
 
 //Generates unique value for the table
