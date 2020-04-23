@@ -45,7 +45,7 @@ function getImage() {
 }
 
 $("#downloadBtn").click(function () {
-    saveAs(canvasImage.toDataURL(), 'canvas.png');
+    saveAs(canvasImage.toDataURL(), 'ticket.png');
 });
 
 function saveAs(uri, filename) {
