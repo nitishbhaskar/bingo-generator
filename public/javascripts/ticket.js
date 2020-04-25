@@ -16,7 +16,7 @@ function getTicket(numberOfTickets) {
 
 function displayTickets(tickets) {
     tickets.forEach((ticket, index) => {
-        const ticketIds = { "row0": "row0" + index, "row1": "row1" + index, "row2": "row2" + index, "uniqueTicketNumber": generateUniqueId() };
+        const ticketIds = { "row0": "row0" + index, "row1": "row1" + index, "row2": "row2" + index, "uniqueTicketNumber": index + 1 };
         const renderedTable = Mustache.render(ticketTemplate, ticketIds);
         $("#ticket").append(renderedTable);
 
