@@ -36,7 +36,7 @@ function displayTickets(tickets) {
 
 //Turns the generated ticket table into an image for easy copying
 function getImage() {
-    html2canvas(document.querySelector("#ticket")).then(canvas => {
+    html2canvas(document.querySelector("#ticket"), { scale: 2 }).then(canvas => {
         canvasImage = canvas;
         $("#ticket").empty();
         $("#ticketAlert").show();

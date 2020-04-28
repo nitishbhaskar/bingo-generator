@@ -1,3 +1,7 @@
+body{
+    background-color: #f8f9fa!important;
+}
+
 .paddingTableCell {
     padding: 20px;
 }
@@ -24,7 +28,7 @@
 }
 
 .descriptionFont {
-    font-size: 50px;
+    font-size: 30px;
 }
 
 td {
@@ -75,4 +79,8 @@ td {
 
 .marginBottom{
     margin-bottom: 20px;
+}
+
+.marginCard{
+    margin: 20px;
 }
