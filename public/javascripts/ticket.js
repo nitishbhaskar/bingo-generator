@@ -2,6 +2,8 @@ const ticketTemplate = "<div class=\"ticketId\">{{uniqueTicketNumber}}</div><tab
 
 let canvasImage = "";
 
+$("#downloadBtn").prop('disabled', true);
+
 $("#getTicketBtn").click(function () {
     const numberOfTickets = document.getElementById('numberOfTickets').value;
     $("#ticket").empty();
@@ -11,6 +13,7 @@ $("#getTicketBtn").click(function () {
 function getTicket(numberOfTickets) {
     $.get('/getTicket/' + numberOfTickets, function (data) {
         displayTickets(data);
+        $("#downloadBtn").prop('disabled', false);
     });
 }
 
