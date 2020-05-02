@@ -24,21 +24,19 @@ function generateRandomNumber() {
     }
 }
 
-const numberTemplate = "<td class=\"text-center\"><span class=\"numbersList\" id={{number}} style=\"visibility: hidden\">{{number}}</span></td>";
+//const numberTemplate = "<td class=\"text-center\"><span class=\"numbersList\" id={{number}} style=\"visibility: hidden\">{{number}}</span></td>";
+const numberTemplate = "<td class=\"text-center\"><span class=\"numbersList numberBefore\" id={{number}}>{{number}}</span></td>";
 
 function generateTable() {
     let num = 1;
     let rows = "";
     while (num <= 90) {
         if (num % 10 == 1) {
-            //$("#numberTable").append("<tr>");
             rows += "<tr>";
         }
         const renderedTableData = Mustache.render(numberTemplate, { "number": num });
-        //$("#numberTable").append(renderedTableData);
         rows += renderedTableData;
         if (num % 10 == 0) {
-            //$("#numberTable").append("</tr>");
             rows += "</tr>";
         }
         num++;
@@ -49,8 +47,8 @@ function generateTable() {
 generateTable();
 
 function displayNumberInTable(number) {
-    //$("#" + number).text(number);
-    $("#" + number).css("visibility", "visible");
+    //$("#" + number).css("visibility", "visible");
+    $("#" + number).removeClass("numberBefore");
 }
 
 $("#nextNumberBtn").click(function () {

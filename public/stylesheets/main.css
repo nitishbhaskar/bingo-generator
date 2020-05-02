@@ -89,3 +89,8 @@ button:disabled {
     cursor: not-allowed;
     pointer-events: all !important;
 }
+
+.numberBefore{
+    color: lightgray;
+    opacity: 20%;
+}
