@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const randomizer = require('../helper/randomizer');
+const fifteenNumbersTicket = require('../helper/fifteenNumbersTicket');
 
 router.use(express.static(__basedir + "/public/javascripts"));
 router.use(express.static(__basedir + "/public/stylesheets"));
@@ -18,7 +18,7 @@ router.get('/getTicket/:totalTickets', function (req, res) {
   let totalTickets = req.params.totalTickets;
   let tickets = [];
   while (totalTickets != 0) {
-    tickets.push(randomizer.getTicket());
+    tickets.push(fifteenNumbersTicket.getTicket());
     totalTickets--;
   }
   res.send(tickets);
