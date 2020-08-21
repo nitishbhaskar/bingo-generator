@@ -56,8 +56,13 @@ td {
     border: 5px solid red;
 }
 
-.table-bordered td {
+.table-bordered td{
     border: 1px solid black; 
+}
+
+.table-bordered th{
+    background-color:lightblue;
+    border: 1px solid black;
 }
 
 .footer {

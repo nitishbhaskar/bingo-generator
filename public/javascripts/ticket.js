@@ -1,5 +1,7 @@
 const ticketTemplate = "<div class=\"ticketId\">{{uniqueTicketNumber}}</div><table class=\"table table-bordered ticketBorder table-sm\"><tr id={{row0}}></tr><tr id={{row1}}></tr><tr id={{row2}}></tr></table>";
 
+const ticketTemplate30Num = "<div class=\"ticketId\">{{uniqueTicketNumber}}</div><table class=\"table table-bordered ticketBorder table-sm\"><tr><th class=\"text-center\">B</th><th class=\"text-center\">I</th><th class=\"text-center\">N</th><th class=\"text-center\">G</th><th class=\"text-center\">O</th></tr><tr id={{row0}}></tr><tr id={{row1}}></tr><tr id={{row2}}></tr><tr id={{row3}}></tr><tr id={{row4}}></tr><tr id={{row5}}></tr></table>";
+
 let canvasImage = "";
 
 $("#downloadBtn").prop('disabled', true);
@@ -7,8 +9,44 @@ $("#downloadBtn").prop('disabled', true);
 $("#getTicketBtn").click(function () {
     const numberOfTickets = document.getElementById('numberOfTickets').value;
     $("#ticket").empty();
-    getTicket(numberOfTickets);
+    const ticketType = document.querySelector('input[name="ticketType"]:checked').value;
+    if (ticketType == 15) {
+        getTicket(numberOfTickets);
+    }
+    else {
+        get30NumTicket(numberOfTickets);
+    }
 });
+
+function get30NumTicket(numberOfTickets) {
+    $.get('/get30NumTicket/' + numberOfTickets, function (data) {
+        display30NumTickets(data);
+        $("#downloadBtn").prop('disabled', false);
+    });
+}
+
+function display30NumTickets(tickets) {
+    tickets.forEach((ticket, index) => {
+        const ticketIds = {
+            "row0": "row0" + index, "row1": "row1" + index, "row2": "row2" + index,
+            "row3": "row3" + index, "row4": "row4" + index, "row5": "row5" + index, "uniqueTicketNumber": index + 1
+        };
+        const renderedTable = Mustache.render(ticketTemplate30Num, ticketIds);
+        $("#ticket").append(renderedTable);
+
+        Object.keys(ticket).forEach(element => {
+            ticket[element].forEach(number => {
+                if (number != 0) {
+                    $("#" + element + "" + index).append("<td class=\"text-center\"> " + number + " </td>");
+                }
+                else {
+                    $("#" + element + "" + index).append("<td>  </td>");
+                }
+            });
+        });
+    });
+    getImage();
+}
 
 function getTicket(numberOfTickets) {
     $.get('/getTicket/' + numberOfTickets, function (data) {

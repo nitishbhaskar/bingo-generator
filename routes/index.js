@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const fifteenNumbersTicket = require('../helper/fifteenNumbersTicket');
+const thirtyNumbersTicket = require('../helper/thirtyNumbersTicket');
 
 router.use(express.static(__basedir + "/public/javascripts"));
 router.use(express.static(__basedir + "/public/stylesheets"));
@@ -19,6 +20,16 @@ router.get('/getTicket/:totalTickets', function (req, res) {
   let tickets = [];
   while (totalTickets != 0) {
     tickets.push(fifteenNumbersTicket.getTicket());
+    totalTickets--;
+  }
+  res.send(tickets);
+});
+
+router.get('/get30NumTicket/:totalTickets', function (req, res) {
+  let totalTickets = req.params.totalTickets;
+  let tickets = [];
+  while (totalTickets != 0) {
+    tickets.push(thirtyNumbersTicket.getTicket());
     totalTickets--;
   }
   res.send(tickets);
