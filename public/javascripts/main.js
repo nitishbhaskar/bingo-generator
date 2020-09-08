@@ -1,6 +1,7 @@
 let numberSet = new Set();
 let previousNumber = 0;
 let currentNumber = 0;
+const bingoColumn = { 0: "B", 1: "I", 2: "N", 3: "G", 4: "O" };
 
 function generateRandomNumber() {
     var randomNumber = Math.floor(Math.random() * 90) + 1;
@@ -15,10 +16,13 @@ function generateRandomNumber() {
         previousNumber = currentNumber;
         $("#" + previousNumber).addClass("previousNumber");
         currentNumber = randomNumber;
+        const columnIndex = Math.floor(randomNumber / 18);
+        //$("#columnIndex").text("-");
         odometer.innerHTML = randomNumber;
         setTimeout(function () {
             $("#numberCallDescription").text(bingoCallsList[randomNumber]);
             displayNumberInTable(randomNumber);
+            $("#columnIndex").text(bingoColumn[columnIndex]);
         }, 2000);
         numberSet.add(randomNumber);
     }

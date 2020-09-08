@@ -99,3 +99,8 @@ button:disabled {
     color: lightgray;
     opacity: 20%;
 }
+
+.columnIndex {
+    margin: 5px;
+    font-size: 300%;
+}
