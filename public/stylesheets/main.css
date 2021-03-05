@@ -104,3 +104,7 @@ button:disabled {
     margin: 5px;
     font-size: 300%;
 }
+
+.centerAlign{
+    align-self: center;
+}
