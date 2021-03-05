@@ -2,30 +2,34 @@ let numberSet = new Set();
 let previousNumber = 0;
 let currentNumber = 0;
 const bingoColumn = { 1: "B", 2: "I", 3: "N", 4: "G", 5: "O" };
+let randomNumbers;
+let count = 0;
+
+function getRandomNumbers() {
+    $.get("/getRandomNumbers", function (data) {
+        randomNumbers = data.split("\n");
+        randomNumbers = randomNumbers.filter(function (el) {
+            return el != "";
+        });
+    });
+};
+getRandomNumbers();
 
 function generateRandomNumber() {
-    var randomNumber = Math.floor(Math.random() * 90) + 1;
-    console.log(randomNumber);
-    //This avoids random number to be adjacent of previous number until first 75 numbers
-    if (numberSet.has(randomNumber) || (numberSet.size < 75 && (randomNumber >= currentNumber - 3 && randomNumber <= currentNumber + 3))) {
-        console.log("Exists or adjacent");
-        generateRandomNumber(); // Get a new number if number was previously generated.
-    }
-    else {
-        $("#" + previousNumber).removeClass("previousNumber");
-        previousNumber = currentNumber;
-        $("#" + previousNumber).addClass("previousNumber");
-        currentNumber = randomNumber;
-        const columnIndex = Math.ceil(randomNumber / 18);
-        //$("#columnIndex").text("-");
-        odometer.innerHTML = randomNumber;
-        setTimeout(function () {
-            $("#numberCallDescription").text(bingoCallsList[randomNumber]);
-            displayNumberInTable(randomNumber);
-            $("#columnIndex").text(bingoColumn[columnIndex]);
-        }, 2000);
-        numberSet.add(randomNumber);
-    }
+    var randomNumber = randomNumbers[count++];
+    $("#" + previousNumber).removeClass("previousNumber");
+    previousNumber = currentNumber;
+    $("#" + previousNumber).addClass("previousNumber");
+    currentNumber = randomNumber;
+    const columnIndex = Math.ceil(randomNumber / 18);
+    //$("#columnIndex").text("-");
+    odometer.innerHTML = randomNumber;
+    setTimeout(function () {
+        $("#numberCallDescription").text(bingoCallsList[randomNumber]);
+        displayNumberInTable(randomNumber);
+        $("#columnIndex").text(bingoColumn[columnIndex]);
+    }, 2000);
+    numberSet.add(randomNumber);
 }
 
 //const numberTemplate = "<td class=\"text-center\"><span class=\"numbersList\" id={{number}} style=\"visibility: hidden\">{{number}}</span></td>";
