@@ -41,7 +41,14 @@ td {
 }
 
 .odometer {
-    font-size: 150px;
+    font-size: 240px;
+}
+
+#columnName{
+    float: left;
+    margin-left: -130px;
+    font-family: monospace;
+    font-size: smaller;
 }
 
 .previousNumber {
@@ -88,6 +95,10 @@ td {
 
 .marginCard{
     margin: 20px;
+}
+
+.marginDescription{
+    margin-top: -30px;
 }
 
 button:disabled {
