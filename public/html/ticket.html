@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-car.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="sidebars.css">
 
 <head>
     <title>Bingo!</title>
@@ -14,7 +14,61 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <main>
+        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white margin10" style="width: 250px;">
+            <a href="/"
+                class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                <svg class="bi me-2" width="30" height="24">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-5 fw-semibold">Bingo!</span>
+
+            </a>
+            <div class="row">
+                <datalist id="datalistOptions">
+                </datalist>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ticketType" id="inlineRadio1" value="15" checked>
+                <label class="form-check-label" for="inlineRadio1">15 numbers ticket</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ticketType" id="inlineRadio2" value="30">
+                <label class="form-check-label" for="inlineRadio2">30 numbers ticket</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ticketType" id="inlineRadio3" value="36">
+                <label class="form-check-label" for="inlineRadio3">36 numbers ticket</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="ticketType" id="inlineRadio4" value="25">
+                <label class="form-check-label" for="inlineRadio3">25 numbers ticket</label>
+            </div>
+            <input type="text" id="numberOfTickets" class="form-control" placeholder="Number of tickets"
+                list="datalistOptions" aria-label="Number of tickets" aria-describedby="button-addon2" type="number"
+                onkeypress="return isNumberKey(event)">
+            <input type="text" id="startingIndex" class="form-control" placeholder="Starting index of tickets"
+                list="datalistOptions" aria-label="Starting index of tickets" aria-describedby="button-addon2" value="1"
+                type="number" onkeypress="return isNumberKey(event)">
+            <div>
+                <button class="btn btn-primary" type="button" id="getTicketBtn">Get Tickets!</button>
+                <button class="btn btn-warning" type="button" id="downloadBtn"
+                    title="Get the tickets before downloading">Download!</button>
+                <button class="btn btn-primary" type="button" id="getCoolcozTktBtn">Coolcoz Tickets!</button>
+            </div>
+        </div>
+
+        <div class="b-example-divider"></div>
+        <div class="col-12">
+            <div class="row cardContainer marginBottom">
+                <div class="row cardContainer" id="ticket"></div>
+            </div>
+            <div class="footer">
+                <p>Created by <a href="https://www.linkedin.com/in/nitishbhaskar/">Nitish Bhaskar</a></p>
+            </div>
+        </div>
+    </main>
+    <!-- <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Bingo!</a>
     </nav>
     <div class="container">
@@ -51,17 +105,15 @@
     </div>
     <div class="footer">
         <p>Created by <a href="https://www.linkedin.com/in/nitishbhaskar/">Nitish Bhaskar</a></p>
-    </div>
+    </div> -->
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 <script src="mustache.min.js"></script>
 <script src="html2canvas.min.js"></script>
+<script src="sidebars.js"></script>
 <script src="ticket.js"></script>
 
 </html>

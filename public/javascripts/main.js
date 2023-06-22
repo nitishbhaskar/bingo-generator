@@ -4,6 +4,7 @@ let currentNumber = 0;
 const bingoColumn = { 1: "B", 2: "I", 3: "N", 4: "G", 5: "O" };
 let randomNumbers;
 let count = 0;
+const prizeArray = ["Zona", "Jaldi 3", "Jaldi 5", "Jaldi 6 (1 per row)", "Jaldi 10", "BP", "4 Corners", "Twins", "B Column", "I Column", "N Column", "G Column", "O Column", "Line 1", "Line 2", "Line 3", "Line 4", "Line 5", "Line 6", "Line 1-2", "Line 3-4", "Line 5-6", "Upper House", "Lower House", "Photo frame", "Box", "Full house 1", "Full house 2", "Full house 3", "Full house 4", "Full house 5", "Zona", "Zona Full house"];
 
 function getRandomNumbers() {
     $.get("/getRandomNumbers", function (data) {
@@ -11,10 +12,15 @@ function getRandomNumbers() {
         randomNumbers = randomNumbers.filter(function (el) {
             return el != "";
         });
-        $("#odometer").prepend("<span id='columnName'></span>");
+        console.log(randomNumbers);
+    });
+
+    $.each(prizeArray, function (i, item) {
+        $("#datalistOptions").append($("<option>").text(item));
     });
 };
 getRandomNumbers();
+
 
 function generateRandomNumber() {
     var randomNumber = randomNumbers[count++];
@@ -23,20 +29,17 @@ function generateRandomNumber() {
     $("#" + previousNumber).addClass("previousNumber");
     currentNumber = randomNumber;
     const columnIndex = Math.ceil(randomNumber / 18);
-    //$("#columnIndex").text("-");
-    odometer.innerHTML = 0;
-    odometer.innerHTML = randomNumber;
+    odoo.default({ el: '.js-odoo', from: '-' + ("0" + previousNumber).slice(-2), to: bingoColumn[columnIndex] + ("0" + currentNumber).slice(-2) });
     setTimeout(function () {
         $("#numberCallDescription").text(bingoCallsList[randomNumber]);
         displayNumberInTable(randomNumber);
-        //$("#columnIndex").text(bingoColumn[columnIndex]);
         $("#columnName").text(bingoColumn[columnIndex]);
-    }, 2000);
+        $("#numberOrder").prepend("<span class=\"badge bg-warning text-dark\">" + randomNumber + "</span><img src=\"images/arrow-left-short.svg\"></img>");
+    }, 3500);
 
     numberSet.add(randomNumber);
 }
 
-//const numberTemplate = "<td class=\"text-center\"><span class=\"numbersList\" id={{number}} style=\"visibility: hidden\">{{number}}</span></td>";
 const numberTemplate = "<td class=\"text-center\"><span class=\"numbersList numberBefore\" id={{number}}>{{number}}</span></td>";
 
 function generateTable() {
@@ -59,12 +62,10 @@ function generateTable() {
 generateTable();
 
 function displayNumberInTable(number) {
-    //$("#" + number).css("visibility", "visible");
     $("#" + number).removeClass("numberBefore");
 }
 
 $("#nextNumberBtn").click(function () {
-    //$("#numberCallDescription").text(' ');
     if (numberSet.size < 90) {
         generateRandomNumber();
     }
@@ -102,14 +103,6 @@ $("#prizeAddBtn").click(function () {
         }
     });
 });
-
-// $('input:checkbox').change(function () {
-//     if (this.checked) {
-//         $(this).next(".label-text").css("text-decoration-line", "line-through");
-//     } else {
-//         $(this).next(".label-text").css("text-decoration-line", "none");
-//     }
-// });
 
 function generateUniqueId() {
     var length = 5,

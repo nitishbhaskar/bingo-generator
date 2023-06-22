@@ -1,5 +1,13 @@
-body{
-    background-color: #f8f9fa!important;
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+.number{
+    font-family: 'Inconsolata';
+    font-weight: bold;
+    font-size: 250pt;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .paddingTableCell {
@@ -56,7 +64,7 @@ td {
 }
 
 .numbersList{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .ticketBorder{
@@ -118,4 +126,25 @@ button:disabled {
 
 .centerAlign{
     align-self: center;
+}
+
+.numberOrder{
+    font-size: xx-large;
+}
+
+.margin10{
+    margin: 10px;
+}
+
+.margin5{
+    margin: 5px;
+}
+
+.font-medium{
+    font-size: medium;
+}
+
+.wordWrap{
+    word-wrap: break-word;
+    font-size: xx-small;
 }
