@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-train-station.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://unpkg.com/@pqina/flip/dist/flip.min.css" rel="stylesheet">
+
 <link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="prizes.css">
+<link rel="stylesheet" href="sidebars.css">
 
 <head>
     <title>Bingo!</title>
@@ -14,6 +17,74 @@
 </head>
 
 <body>
+    <main>
+        <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white margin10" style="width: 250px;">
+            <span class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+                <svg class="bi me-2" width="30" height="24">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-5 fw-semibold">Bingo!</span>
+
+            </span>
+            <div class="row">
+                <datalist id="datalistOptions">
+                </datalist>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter the prize name"
+                    aria-label="Recipient's username" list="datalistOptions" aria-describedby="basic-addon2"
+                    id="prizeNameTxt">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="prizeAddBtn">Add</button>
+                </div>
+            </div>
+            <div class="list-group list-group-flush border-bottom scrollarea padding30">
+                <div class="bg-white" id="prizeList">
+
+                </div>
+                <hr />
+                <div class="bg-white" id="prizeListCompleted">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="b-example-divider"></div>
+        <div class="col-5">
+            <button type="button" class="btn btn-primary btn-lg btn-block cardContainer col-11" id="nextNumberBtn">Next
+                Number</button>
+            <div class="js-odoo number"></div>
+            <div class="footer">
+                <p>Created by <a href="https://www.linkedin.com/in/nitishbhaskar/">Nitish Bhaskar</a></p>
+            </div>
+        </div>
+        <div class="b-example-divider"></div>
+        <div class="col-4 margin10">
+            <table id="numberTable" class="table table-bordered table-sm"></table>
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                            aria-controls="panelsStayOpen-collapseOne">
+                            Number sequence
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                        aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            <div id="numberOrder" class="numberOrder"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+</body>
+
+<!-- <body>
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Bingo!</a>
 
@@ -26,35 +97,53 @@
             Number</button>
     </div>
     <div class="row cardContainer">
-        <div class="col-3 card marginCard">
-            <div class="centerAlign columnIndex">
-                <span class="badge badge-pill badge-secondary" id="columnIndex"></span>
-            </div>
-            <div class="row" style="align-self: center">
-                <div id="odometer" class="odometer marginTableCell"></div>
-            </div>
-            <div class="row" style="align-self: center">
-                <div class="descriptionFont text-justify col-12" id="numberCallDescription"></div>
-            </div>
-
-        </div>
-        <div class="col-8 card marginCard">
+        <div class="col-4 card marginCard">
             <table id="numberTable" class="table table-bordered table-sm cardContainer"></table>
         </div>
+        <div class="col-5 card marginCard">
+            <div class="row" style="align-self: center">
+                <span id="tick"></span>
+            </div>
+        </div>
+        <div class="col-2 card marginCard">
+            <div class="container">
+                <div class="d-flex justify-content-center row">
+                    <div>
+                        <div class="p-2 bg-white notes">
+                            <div class="d-flex flex-row align-items-center notes-title">
+                                <h4>Prizes</h4>
+                            </div>
+</div>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Enter the prize name" aria-label="Recipient's username"
+        aria-describedby="basic-addon2" id="prizeNameTxt">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="prizeAddBtn">Add</button>
     </div>
-    <div class="footer">
-        <p>Created by <a href="https://www.linkedin.com/in/nitishbhaskar/">Nitish Bhaskar</a></p>
-    </div>
-</body>
+</div>
+<div class="bg-white" id="prizeList">
+
+</div>
+<hr />
+<div class="bg-white" id="prizeListCompleted">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+    <p>Created by <a href="https://www.linkedin.com/in/nitishbhaskar/">Nitish Bhaskar</a></p>
+</div>
+</body> -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 <script src="mustache.min.js"></script>
-<script src="https://github.hubspot.com/odometer/odometer.js"></script>
+<script src="odoo.js"></script>
+<script src="sidebars.js"></script>
 <script src="main.js"></script>
 
 </html>
